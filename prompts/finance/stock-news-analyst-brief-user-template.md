@@ -1,8 +1,6 @@
 Here is the raw market data for analysis:
 
 <market_data>
-{{ JSON.stringify($json, null, 2) }}
-</market_data>
 
 ## DATA LEGEND
 
