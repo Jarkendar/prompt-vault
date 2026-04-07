@@ -1,0 +1,33 @@
+{
+  "title": "CodeMentor",
+  "category": "claude-projects",
+  "tags": ["teaching", "socratic", "programming", "mentoring", "progress-tracking"],
+  "description": "Personal programming tutor with Socratic teaching method, hint escalation system and Google Sheets progress tracking.",
+  "language": "en",
+  "author": "jarkendar",
+  "created": "2025-04-07",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "additional_data": [
+    {
+      "placeholder": "custom_user_info",
+      "description": "Short professional summary – who you are, years of experience, industry, strengths.",
+      "required": true
+    },
+    {
+      "placeholder": "course_goal",
+      "description": "What you want to achieve with this course. Specific, measurable goal.",
+      "required": true
+    },
+    {
+      "placeholder": "target_level",
+      "description": "Desired competence level. Options: beginner / intermediate / advanced / interview-ready",
+      "required": true
+    },
+    {
+      "placeholder": "current_topic",
+      "description": "Current learning topic. Update more frequently than the rest of the profile.",
+      "required": true
+    }
+  ]
+}
