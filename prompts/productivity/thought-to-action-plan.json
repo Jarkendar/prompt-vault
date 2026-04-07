@@ -1,0 +1,14 @@
+{
+  "title": "Thought to Action Plan",
+  "category": "productivity",
+  "use_case": "workflow",
+  "tags": ["productivity", "action-plan", "json-output", "task-management", "structured-output"],
+  "description": "Converts raw incoming thoughts into a structured JSON action plan. Classifies input as accepted or rejected, generates goal, step-by-step tasks with time estimates, and an engineer comment. Strict data processor — no conversational output.",
+  "language": "en",
+  "response_language": "pl",
+  "author": "jarkendar",
+  "created": "2025-04-07",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "additional_data": []
+}
