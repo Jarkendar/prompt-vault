@@ -8,6 +8,7 @@
   "created": "2025-04-07",
   "version": "1.0.0",
   "tested_on": "claude-sonnet",
+  "use_case": "claude-project",
   "additional_data": [
     {
       "placeholder": "custom_user_info",
