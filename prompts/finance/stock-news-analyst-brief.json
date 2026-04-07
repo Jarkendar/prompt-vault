@@ -1,0 +1,15 @@
+{
+  "title": "Stock News Analyst — Brief",
+  "category": "finance",
+  "use_case": "workflow",
+  "tags": ["finance", "stocks", "news-analysis", "json-output", "brief"],
+  "description": "Lightweight version of Stock News Analyst. Returns importance score and a single-sentence Polish description. Designed for high-volume or space-constrained workflows.",
+  "language": "en",
+  "response_language": "pl",
+  "author": "jarkendar",
+  "created": "2025-04-07",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "variant_of": "stock-news-analyst.md",
+  "additional_data": []
+}

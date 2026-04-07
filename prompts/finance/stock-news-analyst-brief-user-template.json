@@ -1,0 +1,21 @@
+{
+  "title": "Stock News Analyst Brief — User Message Template",
+  "category": "finance",
+  "use_case": "workflow",
+  "tags": ["finance", "stocks", "news-analysis", "user-template", "google-search", "brief"],
+  "description": "User message template for the Stock News Analyst Brief workflow. Injects raw market data and current date, instructs the model to search for news from the last 24 hours only.",
+  "language": "en",
+  "response_language": "pl",
+  "author": "jarkendar",
+  "created": "2025-04-07",
+  "version": "1.0.0",
+  "tested_on": "gemini",
+  "pair_with": "stock-news-analyst-brief.md",
+  "additional_data": [
+    {
+      "placeholder": "current_date",
+      "description": "Today's date in yyyy-MM-dd format.",
+      "required": true
+    }
+  ]
+}

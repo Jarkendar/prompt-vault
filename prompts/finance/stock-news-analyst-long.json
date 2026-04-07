@@ -1,0 +1,14 @@
+{
+  "title": "Stock News Analyst",
+  "category": "finance",
+  "use_case": "workflow",
+  "tags": ["finance", "stocks", "news-analysis", "json-output", "market-analysis"],
+  "description": "Analyzes stock news and company data, returning a structured JSON with ticker symbol, importance score (0–10), and a concise Polish-language explanation of price movement.",
+  "language": "en",
+  "response_language": "pl",
+  "author": "jarkendar",
+  "created": "2025-04-07",
+  "version": "1.0.0",
+  "tested_on": "gemini",
+  "additional_data": []
+}
