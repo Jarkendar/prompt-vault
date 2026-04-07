@@ -1,0 +1,25 @@
+{
+  "title": "Trip Ideas Generator",
+  "category": "travel",
+  "use_case": "workflow",
+  "tags": ["travel", "trip-planning", "hidden-gems", "json-output", "seasonal"],
+  "description": "Generates 4 unique trip proposals based on base city and current date — from a city date to a long vacation. Avoids tourist traps, focuses on atmospheric and off-the-beaten-path places.",
+  "language": "en",
+  "response_language": "pl",
+  "author": "jarkendar",
+  "created": "2025-04-07",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "additional_data": [
+    {
+      "placeholder": "current_date",
+      "description": "Today's date in DD.MM.YYYY format. Used to determine current season and plan ahead.",
+      "required": true
+    },
+    {
+      "placeholder": "city",
+      "description": "Base city for the trip proposals. Used as a starting point for all 4 trip types.",
+      "required": true
+    }
+  ]
+}
