@@ -16,6 +16,11 @@
       "placeholder": "current_date",
       "description": "Today's date in yyyy-MM-dd format.",
       "required": true
+    },
+    {
+      "placeholder": "market_data",
+      "description": "Datas: ticket, price, changes",
+      "required": true
     }
   ]
 }
