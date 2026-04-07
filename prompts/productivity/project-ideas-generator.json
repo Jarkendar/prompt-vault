@@ -1,0 +1,20 @@
+{
+  "title": "Project Ideas Generator",
+  "category": "productivity",
+  "use_case": "workflow",
+  "tags": ["productivity", "project-ideas", "json-output", "android", "development"],
+  "description": "Generates 4 unique project ideas tailored to a personal tech toolkit — 2 light projects, 1 flagship MVP concept, and 1 pure programming productivity tool. Balances software-first thinking with practical usefulness.",
+  "language": "en",
+  "response_language": "pl",
+  "author": "jarkendar",
+  "created": "2025-04-07",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "additional_data": [
+    {
+      "placeholder": "current_date",
+      "description": "Today's date. Used to provide seasonal or time-aware project suggestions.",
+      "required": true
+    }
+  ]
+}
