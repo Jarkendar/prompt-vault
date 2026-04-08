@@ -2,6 +2,12 @@
 
 Personal AI prompt library with semantic search powered by embeddings.
 
+## Live
+
+🔍 **[jarkendar.github.io/prompt-vault](https://jarkendar.github.io/prompt-vault/)**
+
+![prompt-vault preview](docs/preview.png)
+
 ## Overview
 
 A self-hosted, fully static prompt library built on top of GitHub infrastructure.
@@ -24,7 +30,8 @@ prompt-vault/
 ├── scripts/
 │   └── generate_embeddings.py
 ├── docs/
-│   └── index.html
+│   ├── index.html
+│   └── preview.png
 ├── embeddings.json
 ├── .github/
 │   └── workflows/
@@ -56,37 +63,30 @@ Each prompt consists of two files:
 | `version` | Semantic version |
 | `additional_data` | Placeholders to replace before use (e.g. `<city>`, `<current_date>`) |
 
-## Roadmap
-
-### Phase 1 – Foundation
-- [x] Directory structure and prompt file schema (JSON)
-- [x] Seed data — initial prompts across multiple categories
-- [x] README with project description
-
-### Phase 2 – Embeddings Pipeline
-- [ ] `generate_embeddings.py` using Universal Sentence Encoder Multilingual
-- [ ] Local test — generate and save `embeddings.json`
-- [ ] GitHub Actions workflow — auto-regenerate embeddings on push to `prompts/`
-
-### Phase 3 – Search UI
-- [ ] `index.html` — load `embeddings.json` at runtime
-- [ ] Cosine similarity search implemented in vanilla JS (no backend)
-- [ ] GitHub Pages — deploy and end-to-end test
-
-### Phase 4 – Polish
-- [ ] Filter by category
-- [ ] One-click copy prompt to clipboard
-- [ ] UI/UX improvements — readable result cards
-
 ## Tech Stack
 
 | Component | Technology |
 |---|---|
-| Embeddings model | Universal Sentence Encoder Multilingual |
+| Embeddings model | `paraphrase-multilingual-MiniLM-L12-v2` (sentence-transformers) |
+| Search in browser | Transformers.js (same model, quantized) |
 | CI/CD | GitHub Actions |
 | Hosting | GitHub Pages |
-| Search | Cosine similarity in vanilla JS |
+| Search algorithm | Cosine similarity in vanilla JS |
 | Storage | Markdown + JSON files in repository |
+
+## How It Works
+
+1. Prompts are stored as `.md` files with matching `.json` metadata
+2. On every push to `prompts/`, GitHub Actions generates `embeddings.json`
+3. The search page loads embeddings and the multilingual model in the browser
+4. Queries in Polish or English are embedded and compared via cosine similarity
+
+## Build Log
+
+- **Phase 1** – repo structure, prompt file schema, seed data across 4 categories
+- **Phase 2** – Python embedding pipeline with sentence-transformers, GitHub Actions auto-regeneration with model caching
+- **Phase 3** – static search UI with Transformers.js, GitHub Pages deploy, multilingual search (PL/EN)
+- **Phase 4** – category filters, one-click copy, UI contrast and button polish
 
 ## License
 
