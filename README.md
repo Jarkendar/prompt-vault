@@ -23,7 +23,7 @@ prompt-vault/
 │   └── ...
 ├── scripts/
 │   └── generate_embeddings.py
-├── web/
+├── docs/
 │   └── index.html
 ├── embeddings.json
 ├── .github/
