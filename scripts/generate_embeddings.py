@@ -2,26 +2,23 @@
 """
 generate_embeddings.py
 Generates embeddings for all prompts in the prompts/ directory
-using Universal Sentence Encoder Multilingual.
+using paraphrase-multilingual-MiniLM-L12-v2 (sentence-transformers).
 Outputs embeddings.json to the repo root.
 """
 
 import json
-import os
 import pathlib
-import re
 
-import numpy as np
-import tensorflow_hub as hub
+from sentence_transformers import SentenceTransformer
 
 # ── Config ────────────────────────────────────────────────────────────────────
 PROMPTS_DIR = pathlib.Path("prompts")
 OUTPUT_FILE = pathlib.Path("embeddings.json")
-MODEL_URL = "https://tfhub.dev/google/universal-sentence-encoder-multilingual/3"
+MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"
 
 # ── Load model ────────────────────────────────────────────────────────────────
 print("Loading model...")
-model = hub.load(MODEL_URL)
+model = SentenceTransformer(MODEL_NAME)
 print("Model loaded.")
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -45,7 +42,7 @@ def load_prompt_pair(md_path: pathlib.Path) -> dict | None:
 
 
 def build_embedding_text(prompt: dict) -> str:
-    """Build a rich text representation for embedding (title + description + tags + content)."""
+    """Build a rich text for embedding: title + description + tags + content."""
     meta = prompt["metadata"]
     parts = [
         meta.get("title", ""),
@@ -75,7 +72,7 @@ def main():
 
     print(f"\nGenerating embeddings for {len(prompts)} prompts...")
     texts = [build_embedding_text(p) for p in prompts]
-    embeddings = model(texts).numpy()
+    embeddings = model.encode(texts, show_progress_bar=True)
 
     results = []
     for prompt, vector in zip(prompts, embeddings):
