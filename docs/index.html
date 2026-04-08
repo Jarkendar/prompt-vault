@@ -15,8 +15,8 @@
       --border:    #1e1e2e;
       --accent:    #7c6af7;
       --accent2:   #4ecca3;
-      --text:      #e2e2f0;
-      --muted:     #555570;
+      --text:      #f2f2ff;
+      --muted:     #9090b8;
       --tag-bg:    #16161f;
       --tag-border:#2a2a3e;
       --radius:    6px;
@@ -370,6 +370,7 @@
     }
 
     .btn {
+      color: #8888aa;
       background: none;
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -446,6 +447,18 @@
       line-height: 1.5;
     }
 
+    .github-btn {
+      color: var(--accent2);
+      border-color: rgba(78,204,163,0.4);
+      background: rgba(78,204,163,0.06);
+    }
+
+    .github-btn:hover {
+      background: rgba(78,204,163,0.14);
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+
     /* scrollbar */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
@@ -491,7 +504,7 @@
       <div class="additional-section" id="modal-additional" style="display:none"></div>
     </div>
     <div class="modal-footer">
-      <button class="btn" id="modal-github">view on github</button>
+      <button class="btn github-btn" id="modal-github">view on github ↗</button>
       <button class="btn primary" id="modal-copy">copy prompt</button>
     </div>
   </div>
