@@ -1,0 +1,50 @@
+name: Generate Embeddings
+
+on:
+  push:
+    paths:
+      - 'prompts/**'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Cache TensorFlow Hub model
+        uses: actions/cache@v4
+        with:
+          path: /tmp/tfhub_cache
+          key: tfhub-use-multilingual-v3
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate embeddings
+        env:
+          TFHUB_CACHE_DIR: /tmp/tfhub_cache
+        run: python scripts/generate_embeddings.py
+
+      - name: Commit embeddings.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add embeddings.json
+          git diff --staged --quiet || git commit -m "chore: regenerate embeddings [skip ci]"
+          git push
