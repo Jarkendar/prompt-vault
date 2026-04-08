@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>prompt-vault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0f;
+      --surface:   #111118;
+      --border:    #1e1e2e;
+      --accent:    #7c6af7;
+      --accent2:   #4ecca3;
+      --text:      #e2e2f0;
+      --muted:     #555570;
+      --tag-bg:    #16161f;
+      --tag-border:#2a2a3e;
+      --radius:    6px;
+      --mono:      'JetBrains Mono', monospace;
+      --display:   'Syne', sans-serif;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LAYOUT ── */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      font-family: var(--display);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-slash {
+      color: var(--accent);
+    }
+
+    .logo-sub {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 6px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── SEARCH BOX ── */
+    .search-wrap {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .search-prefix {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-size: 14px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    #query {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 14px;
+      padding: 14px 16px 14px 42px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      caret-color: var(--accent);
+    }
+
+    #query::placeholder { color: var(--muted); }
+
+    #query:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124,106,247,0.12);
+    }
+
+    /* ── STATUS BAR ── */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      min-height: 20px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+
+    .status-dot.loading { background: var(--accent); animation: pulse 1s infinite; }
+    .status-dot.ready   { background: var(--accent2); }
+    .status-dot.error   { background: #f87171; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    /* ── CATEGORY FILTERS ── */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .filter-btn {
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.04em;
+    }
+
+    .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+
+    .filter-btn.active {
+      background: rgba(124,106,247,0.12);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── RESULTS ── */
+    #results {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .result-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      cursor: pointer;
+      transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.2s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .result-card:hover {
+      border-color: var(--accent);
+      transform: translateX(3px);
+      box-shadow: -3px 0 0 var(--accent);
+    }
+
+    .result-card:hover::before { opacity: 1; }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-family: var(--display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .card-score {
+      font-size: 11px;
+      color: var(--muted);
+      flex-shrink: 0;
+      font-family: var(--mono);
+    }
+
+    .card-score span { color: var(--accent2); }
+
+    .card-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      border-radius: 3px;
+      font-size: 10px;
+      padding: 2px 7px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .tag.category {
+      color: var(--accent);
+      border-color: rgba(124,106,247,0.3);
+      background: rgba(124,106,247,0.06);
+    }
+
+    .tag.use-case {
+      color: var(--accent2);
+      border-color: rgba(78,204,163,0.3);
+      background: rgba(78,204,163,0.06);
+    }
+
+    /* ── MODAL ── */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      padding: 24px;
+      overflow-y: auto;
+    }
+
+    .modal-backdrop.open { display: flex; align-items: flex-start; justify-content: center; }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 720px;
+      margin: auto;
+      overflow: hidden;
+      animation: modalIn 0.2s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.97) translateY(10px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .modal-close:hover { border-color: var(--accent); color: var(--text); }
+
+    .modal-meta {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .modal-body {
+      padding: 20px 24px;
+      max-height: 55vh;
+      overflow-y: auto;
+    }
+
+    .modal-body pre {
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--text);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn:hover { border-color: var(--text); color: var(--text); }
+
+    .btn.primary {
+      background: rgba(124,106,247,0.12);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn.primary:hover {
+      background: rgba(124,106,247,0.22);
+    }
+
+    .btn.success {
+      border-color: var(--accent2);
+      color: var(--accent2);
+      background: rgba(78,204,163,0.1);
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .empty-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+      opacity: 0.4;
+    }
+
+    /* ── ADDITIONAL DATA SECTION ── */
+    .additional-section {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .additional-label {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .placeholder-item {
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      border-radius: var(--radius);
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      font-size: 11px;
+    }
+
+    .placeholder-name {
+      color: var(--accent2);
+      margin-bottom: 2px;
+    }
+
+    .placeholder-desc {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div class="logo">
+      <span class="logo-slash">//</span> prompt-vault
+    </div>
+    <div class="logo-sub">personal AI prompt library · semantic search</div>
+  </header>
+
+  <div class="search-wrap">
+    <span class="search-prefix">›_</span>
+    <input id="query" type="text" placeholder="search in Polish or English..." autocomplete="off" />
+  </div>
+
+  <div class="status-bar">
+    <div class="status-dot loading" id="status-dot"></div>
+    <span id="status-text">loading model...</span>
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <div id="results"></div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title"></div>
+      <button class="modal-close" id="modal-close">ESC</button>
+    </div>
+    <div class="modal-meta" id="modal-meta"></div>
+    <div class="modal-body">
+      <pre id="modal-content"></pre>
+      <div class="additional-section" id="modal-additional" style="display:none"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" id="modal-github">view on github</button>
+      <button class="btn primary" id="modal-copy">copy prompt</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js';
+
+  env.allowLocalModels = false;
+
+  // ── State ──────────────────────────────────────────────────────────────────
+  const EMBEDDINGS_URL = '../embeddings.json';
+  const GITHUB_BASE    = 'https://raw.githubusercontent.com/Jarkendar/prompt-vault/main/';
+  const GITHUB_VIEW    = 'https://github.com/Jarkendar/prompt-vault/blob/main/';
+  const MODEL_NAME     = 'Xenova/paraphrase-multilingual-MiniLM-L12-v2';
+
+  let extractor  = null;
+  let embeddings = [];
+  let filtered   = [];
+  let activeCategory = 'all';
+
+  // ── DOM refs ───────────────────────────────────────────────────────────────
+  const queryEl    = document.getElementById('query');
+  const statusDot  = document.getElementById('status-dot');
+  const statusText = document.getElementById('status-text');
+  const resultsEl  = document.getElementById('results');
+  const filtersEl  = document.getElementById('filters');
+  const backdrop   = document.getElementById('modal-backdrop');
+
+  // ── Helpers ────────────────────────────────────────────────────────────────
+  function setStatus(state, text) {
+    statusDot.className = 'status-dot ' + state;
+    statusText.textContent = text;
+  }
+
+  function cosineSimilarity(a, b) {
+    let dot = 0, na = 0, nb = 0;
+    for (let i = 0; i < a.length; i++) {
+      dot += a[i] * b[i];
+      na  += a[i] * a[i];
+      nb  += b[i] * b[i];
+    }
+    return dot / (Math.sqrt(na) * Math.sqrt(nb));
+  }
+
+  // ── Load embeddings ────────────────────────────────────────────────────────
+  async function loadEmbeddings() {
+    const res = await fetch(EMBEDDINGS_URL);
+    embeddings = await res.json();
+    filtered   = embeddings;
+    buildFilters();
+    renderAll();
+  }
+
+  // ── Build category filters ─────────────────────────────────────────────────
+  function buildFilters() {
+    const categories = ['all', ...new Set(embeddings.map(e => e.category).filter(Boolean))];
+    filtersEl.innerHTML = '';
+    categories.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn' + (cat === 'all' ? ' active' : '');
+      btn.textContent = cat;
+      btn.addEventListener('click', () => {
+        activeCategory = cat;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        runSearch();
+      });
+      filtersEl.appendChild(btn);
+    });
+  }
+
+  // ── Load model ─────────────────────────────────────────────────────────────
+  async function loadModel() {
+    setStatus('loading', 'loading model...');
+    extractor = await pipeline('feature-extraction', MODEL_NAME, {
+      quantized: true,
+      progress_callback: (p) => {
+        if (p.status === 'downloading') {
+          const pct = p.total ? Math.round((p.loaded / p.total) * 100) : '?';
+          setStatus('loading', `downloading model... ${pct}%`);
+        }
+      }
+    });
+    setStatus('ready', `ready · ${embeddings.length} prompts indexed`);
+    queryEl.focus();
+  }
+
+  // ── Search ─────────────────────────────────────────────────────────────────
+  let debounceTimer = null;
+
+  queryEl.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(runSearch, 350);
+  });
+
+  async function runSearch() {
+    const q = queryEl.value.trim();
+
+    // apply category filter first
+    const pool = activeCategory === 'all'
+      ? embeddings
+      : embeddings.filter(e => e.category === activeCategory);
+
+    if (!q) {
+      renderCards(pool.map(e => ({ ...e, score: null })));
+      return;
+    }
+
+    if (!extractor) return;
+
+    setStatus('loading', 'searching...');
+
+    const output = await extractor(q, { pooling: 'mean', normalize: true });
+    const qVec   = Array.from(output.data);
+
+    const scored = pool
+      .map(e => ({ ...e, score: cosineSimilarity(qVec, e.vector) }))
+      .filter(e => e.score > 0.2)
+      .sort((a, b) => b.score - a.score);
+
+    setStatus('ready', `${scored.length} result${scored.length !== 1 ? 's' : ''} · ${embeddings.length} indexed`);
+    renderCards(scored);
+  }
+
+  // ── Render all (no query) ──────────────────────────────────────────────────
+  function renderAll() {
+    renderCards(embeddings.map(e => ({ ...e, score: null })));
+  }
+
+  // ── Render cards ──────────────────────────────────────────────────────────
+  function renderCards(items) {
+    if (items.length === 0) {
+      resultsEl.innerHTML = `
+        <div class="empty">
+          <div class="empty-icon">⌀</div>
+          no results found
+        </div>`;
+      return;
+    }
+
+    resultsEl.innerHTML = '';
+    items.forEach((item, i) => {
+      const card = document.createElement('div');
+      card.className = 'result-card';
+      card.style.animationDelay = (i * 30) + 'ms';
+
+      const scoreHtml = item.score !== null
+        ? `<div class="card-score">match <span>${(item.score * 100).toFixed(0)}%</span></div>`
+        : '';
+
+      card.innerHTML = `
+        <div class="card-top">
+          <div class="card-title">${item.title || item.path}</div>
+          ${scoreHtml}
+        </div>
+        <div class="card-desc">${item.description || ''}</div>
+        <div class="card-meta">
+          ${item.category ? `<span class="tag category">${item.category}</span>` : ''}
+          ${item.use_case ? `<span class="tag use-case">${item.use_case}</span>` : ''}
+          ${(item.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>`;
+
+      card.addEventListener('click', () => openModal(item));
+      resultsEl.appendChild(card);
+    });
+  }
+
+  // ── Modal ──────────────────────────────────────────────────────────────────
+  async function openModal(item) {
+    document.getElementById('modal-title').textContent = item.title || item.path;
+
+    // meta tags
+    const metaEl = document.getElementById('modal-meta');
+    metaEl.innerHTML = [
+      item.category  ? `<span class="tag category">${item.category}</span>` : '',
+      item.use_case  ? `<span class="tag use-case">${item.use_case}</span>` : '',
+      item.tested_on ? `<span class="tag">tested: ${item.tested_on}</span>` : '',
+      item.version   ? `<span class="tag">v${item.version}</span>` : '',
+      item.response_language ? `<span class="tag">response: ${item.response_language}</span>` : '',
+      ...(item.tags || []).map(t => `<span class="tag">${t}</span>`)
+    ].join('');
+
+    // fetch prompt content
+    const contentEl = document.getElementById('modal-content');
+    contentEl.textContent = 'loading...';
+
+    try {
+      const res = await fetch(GITHUB_BASE + item.path);
+      contentEl.textContent = await res.text();
+    } catch {
+      contentEl.textContent = '// could not load prompt content';
+    }
+
+    // additional_data
+    const addEl = document.getElementById('modal-additional');
+    if (item.additional_data && item.additional_data.length > 0) {
+      addEl.style.display = 'block';
+      addEl.innerHTML = `
+        <div class="additional-label">PLACEHOLDERS TO FILL</div>
+        ${item.additional_data.map(p => `
+          <div class="placeholder-item">
+            <div class="placeholder-name">&lt;${p.placeholder}&gt;${p.required ? ' *' : ''}</div>
+            <div class="placeholder-desc">${p.description}</div>
+          </div>`).join('')}`;
+    } else {
+      addEl.style.display = 'none';
+    }
+
+    // buttons
+    document.getElementById('modal-github').onclick = () => {
+      window.open(GITHUB_VIEW + item.path, '_blank');
+    };
+
+    const copyBtn = document.getElementById('modal-copy');
+    copyBtn.textContent = 'copy prompt';
+    copyBtn.className = 'btn primary';
+    copyBtn.onclick = async () => {
+      await navigator.clipboard.writeText(contentEl.textContent);
+      copyBtn.textContent = 'copied ✓';
+      copyBtn.className = 'btn success';
+      setTimeout(() => {
+        copyBtn.textContent = 'copy prompt';
+        copyBtn.className = 'btn primary';
+      }, 2000);
+    };
+
+    backdrop.classList.add('open');
+  }
+
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal-backdrop').addEventListener('click', (e) => {
+    if (e.target === backdrop) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function closeModal() {
+    backdrop.classList.remove('open');
+  }
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+  (async () => {
+    try {
+      await loadEmbeddings();
+      await loadModel();
+    } catch (err) {
+      setStatus('error', 'failed to initialize: ' + err.message);
+      console.error(err);
+    }
+  })();
+</script>
+</body>
+</html>
