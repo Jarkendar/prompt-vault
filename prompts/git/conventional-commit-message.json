@@ -1,0 +1,14 @@
+{
+  "title": "Conventional Commit Message Generator",
+  "category": "git",
+  "use_case": "workflow",
+  "tags": ["git", "commit", "conventional-commits", "ai-agent", "automation"],
+  "description": "Generates structured Conventional Commits messages from changed files in context. Produces subject + body explaining why and how the change was made — useful for both humans and AI agents reading history.",
+  "language": "en",
+  "response_language": "en",
+  "author": "jarkendar",
+  "created": "2025-04-08",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "additional_data": []
+}
