@@ -280,6 +280,12 @@
       background: rgba(78,204,163,0.06);
     }
 
+    .tag.skill {
+      color: #f0a04b;
+      border-color: rgba(240,160,75,0.3);
+      background: rgba(240,160,75,0.06);
+    }
+
     /* ── MODAL ── */
     .modal-backdrop {
       display: none;
@@ -664,7 +670,7 @@
         <div class="card-desc">${item.description || ''}</div>
         <div class="card-meta">
           ${item.category ? `<span class="tag category">${item.category}</span>` : ''}
-          ${item.use_case ? `<span class="tag use-case">${item.use_case}</span>` : ''}
+          ${item.use_case === 'skill' ? `<span class="tag skill">skill</span>` : item.use_case ? `<span class="tag use-case">${item.use_case}</span>` : ''}
           ${(item.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
         </div>`;
 
@@ -681,7 +687,7 @@
     const metaEl = document.getElementById('modal-meta');
     metaEl.innerHTML = [
       item.category  ? `<span class="tag category">${item.category}</span>` : '',
-      item.use_case  ? `<span class="tag use-case">${item.use_case}</span>` : '',
+      item.use_case === 'skill' ? `<span class="tag skill">skill</span>` : item.use_case ? `<span class="tag use-case">${item.use_case}</span>` : '',
       item.tested_on ? `<span class="tag">tested: ${item.tested_on}</span>` : '',
       item.version   ? `<span class="tag">v${item.version}</span>` : '',
       item.response_language ? `<span class="tag">response: ${item.response_language}</span>` : '',

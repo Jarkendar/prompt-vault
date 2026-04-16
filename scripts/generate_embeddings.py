@@ -90,6 +90,8 @@ def main():
             "version": meta.get("version", "1.0.0"),
             "additional_data": meta.get("additional_data", []),
             "vector": vector.tolist(),
+            "trigger_description": meta.get("trigger_description", ""),
+            "compatible_with": meta.get("compatible_with", []),
         })
 
     OUTPUT_FILE.write_text(
