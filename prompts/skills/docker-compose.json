@@ -1,0 +1,16 @@
+{
+  "title": "Docker Compose",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": ["docker", "docker-compose", "containers", "raspberry-pi", "arm64", "homelab"],
+  "description": "Skill for writing production-quality Docker Compose setups. Enforces pinned image versions, named volumes and networks, .env-based secrets, inter-service networking, custom runner Dockerfiles (e.g. n8n + Python), startup/stop scripts for multi-service stacks, and ARM64 / Raspberry Pi 5 compatibility checks.",
+  "trigger_description": "Use when writing or reviewing docker-compose.yml files, creating multi-service container stacks, configuring inter-service networking, adding custom Dockerfiles or sidecar runners, writing startup/stop scripts, or setting up Docker projects intended to run on Raspberry Pi 5 (ARM64).",
+  "language": "en",
+  "response_language": "en",
+  "author": "jarkendar",
+  "created": "2025-04-16",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}
