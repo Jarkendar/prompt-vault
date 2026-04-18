@@ -1,0 +1,28 @@
+{
+  "title": "Kotlin TDD",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": [
+    "kotlin",
+    "tdd",
+    "android",
+    "junit5",
+    "mockk",
+    "turbine",
+    "coroutines",
+    "flow",
+    "code-review",
+    "refactoring"
+  ],
+  "description": "Write, review, and refactor idiomatic Kotlin code using a strict TDD workflow (red → green → refactor) with JUnit 5, MockK, and Turbine. Covers writing new code test-first, structured code review, and safe step-by-step refactoring.",
+  "language": "en",
+  "response_language": "en",
+  "tested_on": "claude-sonnet",
+  "version": "1.0.0",
+  "additional_data": [],
+  "trigger_description": "Use when writing new Kotlin classes, functions, or modules; reviewing or refactoring existing Kotlin code; working with coroutines, Flow, sealed classes, or data classes; or when the user references .kt files, JUnit 5, MockK, or Turbine.",
+  "compatible_with": [
+    "claude",
+    "aider"
+  ]
+}
