@@ -1,0 +1,29 @@
+{
+  "title": "Compose Component Creator",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": [
+    "android",
+    "jetpack-compose",
+    "material3",
+    "composable",
+    "previews",
+    "testing",
+    "compose-test-rule",
+    "ui",
+    "kotlin"
+  ],
+  "description": "Create idiomatic, testable Jetpack Compose components following Material 3 best practices, with multi-variant Previews, test tags, and behavioral tests using ComposeTestRule. Covers creating components from UiState sealed classes, screenshots, Figma exports, or prose descriptions.",
+  "trigger_description": "Use when creating, refactoring, or reviewing any @Composable component — list rows, cards, buttons, input fields, small composed widgets, or screen skeletons. Also trigger when the user provides a screen mockup, Figma export, Claude Design file, or phone screenshot and asks to turn it into Compose code; when they mention a sealed UiState class that a component should render; when .kt files with @Composable annotations are involved; or when the user mentions Compose + testTag, semantics, mergeDescendants, PreviewParameter, or ComposeTestRule. Do NOT use for full-app architecture (ViewModels, navigation graphs, DI modules).",
+  "language": "en",
+  "response_language": "en",
+  "author": "jarkendar",
+  "created": "2025-04-20",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": [
+    "claude",
+    "aider"
+  ],
+  "additional_data": []
+}
