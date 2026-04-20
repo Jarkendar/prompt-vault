@@ -1,0 +1,26 @@
+{
+  "title": "Prompt Vault JSON Generator",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": [
+    "prompt-vault",
+    "json-output",
+    "metadata",
+    "embeddings",
+    "automation",
+    "skills"
+  ],
+  "description": "Generates a prompt-vault-compatible JSON metadata file that pairs with any .md prompt or .skill file, enabling indexing by generate_embeddings.py. Extracts and infers all required fields (title, category, tags, placeholders, etc.) from the source file's frontmatter and body.",
+  "trigger_description": "Use whenever the user asks to create a JSON for a prompt or skill, wants to add something to prompt-vault, or drops a file without explanation expecting a JSON output. Trigger on phrases like \"napisz jsona\", \"zrób json\", \"dodaj do prompt-vault\". Also trigger when the user pastes a SKILL.md frontmatter or prompt file and no JSON exists yet.",
+  "language": "en",
+  "response_language": "en",
+  "author": "jarkendar",
+  "created": "2025-04-20",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": [
+    "claude",
+    "aider"
+  ],
+  "additional_data": []
+}
