@@ -1,0 +1,27 @@
+{
+  "title": "Developer Growth Analysis",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": [
+    "developer-growth",
+    "code-review",
+    "chat-history",
+    "hackernews",
+    "slack",
+    "learning-resources",
+    "patterns",
+    "self-improvement",
+    "productivity",
+    "claude-code"
+  ],
+  "description": "Analyzes recent Claude Code chat history (last 24-48 hours) to identify coding patterns, recurring challenges, and skill gaps. Generates a prioritized growth report with evidence-based improvement areas, curated HackerNews learning resources, and automatically delivers it to Slack DMs.",
+  "trigger_description": "Use when the user wants to understand their development patterns from recent work, identify technical gaps, get curated learning resources tailored to their actual work, or receive a structured growth report without waiting for a code review.",
+  "language": "en",
+  "response_language": "en",
+  "author": "jarkendar",
+  "created": "2026-04-21",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}
