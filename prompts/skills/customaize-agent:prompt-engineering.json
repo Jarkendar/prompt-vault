@@ -1,0 +1,27 @@
+{
+  "title": "Customaize Agent: Prompt Engineering",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": [
+    "prompt-engineering",
+    "llm",
+    "agent",
+    "few-shot",
+    "chain-of-thought",
+    "system-prompt",
+    "persuasion",
+    "claude-code",
+    "template",
+    "optimization"
+  ],
+  "description": "Advanced prompt engineering skill covering few-shot learning, chain-of-thought, template systems, and system prompt design. Includes agent-specific best practices (context window management, freedom levels) and persuasion principles (Authority, Commitment, Social Proof, Unity) backed by empirical research. Use when writing commands, hooks, skills for Claude Code agents, or prompts for sub-agents and any other LLM interaction.",
+  "trigger_description": "Use when writing commands, hooks, or skills for Claude Code agents, prompts for sub-agents, or any other LLM interaction — including optimizing existing prompts, improving LLM output reliability, or designing production prompt templates.",
+  "language": "en",
+  "response_language": "en",
+  "author": "jarkendar",
+  "created": "2026-04-21",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}
