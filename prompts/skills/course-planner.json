@@ -1,0 +1,30 @@
+{
+  "title": "Course Planner",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": [
+    "course-generation",
+    "learning",
+    "html-output",
+    "interactive-ui",
+    "localstorage",
+    "progress-tracking",
+    "tdd",
+    "polish-output",
+    "education",
+    "curriculum"
+  ],
+  "description": "Generates a fully interactive HTML course page from a topic, experience level, and learning goal. Output includes collapsible modules with lesson cards, 3-state status tracking (not started / in progress / done), per-lesson notes persisted in localStorage, copyable lesson and test prompts with role context injected, a pace calculator slider, and confetti celebrations on lesson/module/course completion. Course content is in Polish; technical names and programming terms stay in English.",
+  "trigger_description": "Use whenever the user wants to learn something new, master a technology, or asks for a course plan, curriculum, or study schedule — even phrased casually like 'jak się nauczyć X', 'zrób mi plan kursu', 'chcę opanować Y', or 'give me a study plan for...'. Also trigger when the user describes a desired proficiency level ('chcę móc swobodnie pracować z Room') or wants to link a topic to existing skills or projects. Do NOT use for one-off explanations or Q&A — only when the deliverable is a structured multi-module curriculum.",
+  "language": "en",
+  "response_language": "pl",
+  "author": "jarkendar",
+  "created": "2026-04-22",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": [
+    "claude",
+    "aider"
+  ],
+  "additional_data": []
+}
