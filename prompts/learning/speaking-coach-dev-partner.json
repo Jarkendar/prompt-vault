@@ -1,0 +1,16 @@
+{
+  "title": "English Speaking Coach — Dev Conversation Partner",
+  "category": "learning",
+  "use_case": "workflow",
+  "tags": ["english", "speaking", "conversation-practice", "language-learning", "fluency", "feedback", "developer-persona", "gemini-live"],
+  "description": "A system prompt for a voice/chat bot that simulates natural English conversation with a software developer persona. Runs 15-minute sessions based on a Polish-language goal, never corrects mid-session, and delivers structured written feedback with a 1–100 fluency score at the end.",
+  "trigger_description": "",
+  "language": "en",
+  "response_language": "en",
+  "author": "jarkendar",
+  "created": "2026-04-27",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": [],
+  "additional_data": []
+}
