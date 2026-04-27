@@ -1,0 +1,16 @@
+{
+  "title": "English Speaking Session — Transcript Analyzer",
+  "category": "learning",
+  "use_case": "workflow",
+  "tags": ["english", "transcript-analysis", "error-correction", "fluency", "language-learning", "feedback", "speaking-practice", "polish-output"],
+  "description": "Analyzes a labeled transcript (Me:/Gemini:) from an English conversation session. Produces a table of grammar and vocabulary errors with full-sentence context and corrections, followed by a short pattern analysis identifying recurring mistakes and areas to focus on next. Notes and analysis are in Polish; error content stays in English.",
+  "trigger_description": "",
+  "language": "en",
+  "response_language": "pl",
+  "author": "jarkendar",
+  "created": "2026-04-27",
+  "version": "1.1.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": [],
+  "additional_data": []
+}
