@@ -13,13 +13,13 @@
     "tdd",
     "personalized-learning"
   ],
-  "description": "Generates a personalized, structured learning course as an interactive HTML page with collapsible modules, copyable lesson prompts, status tracking, and notes. Output is directly compatible with the user's self-hosted Courses Hub module (pi-automate) — files drop into courses_src/ and get patched automatically.",
+  "description": "Generates a personalized, structured learning course as an interactive HTML page with collapsible modules, copyable lesson prompts, status tracking, and notes. Output is directly compatible with the user's self-hosted Courses Hub module (pi-automate) — files drop into courses_src/ and get patched automatically. Deployment instructions use abstract placeholders, no hardcoded paths.",
   "trigger_description": "Use whenever the user wants to learn something new, master a technology, deepen expertise in a subject, or asks for a course/learning plan/curriculum — even if phrased casually like 'jak się nauczyć X', 'zrób mi plan kursu', 'chcę opanować Y', 'help me learn Z', or 'give me a study plan for...'. Also trigger when user mentions reaching a specific skill level, combining a topic with prior experience, or branching into related subtopics. Always use this skill instead of plain conversation when the output should be a structured multi-module curriculum with lessons.",
   "language": "en",
   "response_language": "pl",
   "author": "jarkendar",
   "created": "2026-05-15",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "tested_on": "claude-sonnet",
   "compatible_with": ["claude", "aider"],
   "additional_data": []

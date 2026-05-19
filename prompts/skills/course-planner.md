@@ -340,27 +340,28 @@ Each lesson has a collapsible notes area (collapsed by default):
 
 ## Post-Generation Output (to the user)
 
-After saving the HTML and presenting it via `present_files`, append this short deployment block in Polish:
+After saving the HTML and presenting it via `present_files`, append this short deployment block in English:
 
 ```
-Aby dodać kurs do Courses Hub:
+To deploy this course to your Courses Hub:
 
-1. Skopiuj plik do repo (z desktopa):
-   cp /mnt/user-data/outputs/course-<slug>.html ~/Pulpit/github/pi-automate/courses_src/
+1. Copy the file into your local pi-automate repo:
+   cp /mnt/user-data/outputs/course-<slug>.html <repo>/courses_src/
 
-2. Wypchnij na RPi (rsync albo git):
-   rsync -av ~/Pulpit/github/pi-automate/courses_src/course-<slug>.html \
-     rpi:~/github/pi-automate/courses_src/
+2. Push it to the RPi (assuming you have a Tailscale or SSH alias):
+   rsync -av <repo>/courses_src/course-<slug>.html <host>:<remote-repo>/courses_src/
 
-3. Na RPi spatchuj i odśwież manifest:
-   cd ~/github/pi-automate
-   python3 scripts/patch-courses.py --src ./courses_src --dst ./courses_patched
+3. The systemd-path watcher on the RPi will re-patch automatically.
+   If you skipped the watcher setup, run manually:
+     ssh <host>
+     cd <remote-repo>
+     python3 scripts/patch-courses.py --src ./courses_src --dst ./courses_patched
 
-Po hard refresh (Ctrl+Shift+R) dashboard pokaże nowy kurs pod
-http://<TAILSCALE_IP>/dashboard/courses/.
+After a hard refresh (Ctrl+Shift+R), the dashboard at
+https://<rpi-host>.<tailnet>.ts.net/dashboard/courses/ will show the new course.
 ```
 
-Substitute `<slug>` with the actual course slug used for the filename and storage key.
+Substitute `<slug>` with the actual course slug used for the filename and storage key. Leave `<repo>`, `<host>`, `<remote-repo>`, `<rpi-host>`, and `<tailnet>` as placeholders — the user knows their own paths and hostnames.
 
 ---
 
