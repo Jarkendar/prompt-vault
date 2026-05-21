@@ -1,0 +1,25 @@
+{
+  "title": "Conversation Checkpoint",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": [
+    "conversation-summary",
+    "checkpoint",
+    "handoff",
+    "context-preservation",
+    "markdown-output",
+    "copy-paste",
+    "session-management",
+    "llm-context"
+  ],
+  "description": "Generates a dense, copy-pasteable conversation checkpoint as a handoff document for resuming work in a new LLM session. Produces a single markdown code block with topic, persona, stack, chosen path, rejected alternatives, current state, and next steps — optimised for both human scanning and LLM ingestion.",
+  "trigger_description": "Trigger when the user asks for a conversation summary or handoff. Phrasings include 'podsumuj rozmowę', 'podsumuj sesję', 'streszcz rozmowę', 'zrób checkpoint', 'checkpoint', 'savepoint', 'zapisz kontekst', 'handoff', 'summary', 'summarize this conversation', 'wrap up the chat'. Also trigger when the user mentions continuing work in a new chat or session, passing context to another model or bot, running out of context window, or briefing another LLM.",
+  "language": "en",
+  "response_language": "en",
+  "author": "jarkendar",
+  "created": "2026-05-21",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}
