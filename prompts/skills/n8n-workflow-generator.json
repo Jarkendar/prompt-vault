@@ -1,0 +1,25 @@
+{
+  "title": "n8n Workflow Generator",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": [
+    "n8n",
+    "workflow-automation",
+    "json-output",
+    "langchain",
+    "ai-agent",
+    "telegram",
+    "email",
+    "pi-automate"
+  ],
+  "description": "Generates complete, importable n8n workflow JSON files plus a companion Polish-language markdown README from a free-text description of a flow's trigger, internal logic, and output. Targets self-hosted n8n 2.13.2+ on the pi-automate stack, with locked typeVersions, placeholder credentials, auto-detected patterns (prompt-vault triad, telegram-with-callbacks, module shape), and pre-write validation.",
+  "trigger_description": "Use when the user asks for an n8n workflow, automation, flow, or module — including phrases like 'zrób workflow w n8n', 'stwórz flow n8n', 'wygeneruj automatyzację', 'create n8n workflow', or describes a multi-step automation with triggers (schedule/telegram/webhook/module), AI agents, HTTP calls, data transformations, or email/telegram/Sheets/Notion outputs. Trigger even when 'n8n' is not said but the pi-automate context is clear.",
+  "language": "en",
+  "response_language": "pl",
+  "author": "jarkendar",
+  "created": "2026-05-22",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}
