@@ -1,0 +1,16 @@
+{
+  "title": "Android Testing",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": ["android", "kmp", "kotlin", "testing", "junit5", "turbine", "mockk", "assertk", "compose-test", "coroutines-test"],
+  "description": "Testing patterns for Android/KMP covering ViewModel unit tests, fake repositories, StateFlow assertions with Turbine, UnconfinedTestDispatcher setup, SavedStateHandle scenarios, and Compose UI tests with ComposeTestRule. Standardises the test stack: JUnit5, AssertK, Turbine, kotlinx-coroutines-test.",
+  "trigger_description": "Use whenever writing or reviewing tests for ViewModels, repositories, use cases, or Compose screens. Trigger phrases: \"write a test\", \"unit test the ViewModel\", \"test a repository\", \"Turbine\", \"fake repository\", \"UnconfinedTestDispatcher\", \"runTest\", \"ComposeTestRule\", \"JUnit5\".",
+  "language": "en",
+  "response_language": "en",
+  "author": "Philipp Lackner",
+  "created": "2026-05-24",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}

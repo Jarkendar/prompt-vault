@@ -1,0 +1,16 @@
+{
+  "title": "Android Presentation MVI",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": ["android", "kmp", "kotlin", "mvi", "viewmodel", "jetpack-compose", "stateflow", "savedstatehandle", "uitext", "presentation-layer"],
+  "description": "MVI presentation layer patterns for Android/KMP: State, Action, Event sealed types, ViewModel with StateFlow and Channel, Root/Screen composable split, UI models, UiText error mapping, and SavedStateHandle for process death. Defines a consistent structure for every screen.",
+  "trigger_description": "Use whenever creating or reviewing a ViewModel, defining screen state, actions, or events, structuring composables, mapping errors to UI strings, or handling process death. Trigger phrases: \"add a ViewModel\", \"create a screen\", \"MVI\", \"state\", \"action\", \"event\", \"screen composable\", \"UiText\", \"SavedStateHandle\", \"ObserveAsEvents\", \"UI model\".",
+  "language": "en",
+  "response_language": "en",
+  "author": "Philipp Lackner",
+  "created": "2026-05-24",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}

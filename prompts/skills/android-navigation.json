@@ -1,0 +1,16 @@
+{
+  "title": "Android Navigation",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": ["android", "kmp", "kotlin", "jetpack-compose", "navigation", "type-safe-navigation", "kotlinx-serialization", "nav-graph", "modularization"],
+  "description": "Type-safe Compose Navigation for Android/KMP using @Serializable route objects, one nav graph per feature, cross-feature callbacks to keep features decoupled, and assembly of feature nav graphs in :app. Covers route definitions, NavGraphBuilder extensions, and NavController patterns.",
+  "trigger_description": "Use whenever setting up navigation, defining routes, adding a new screen to a nav graph, navigating between features, or wiring nav graphs in the app module. Trigger phrases: \"set up navigation\", \"add a route\", \"navigate between screens\", \"nav graph\", \"NavController\", \"type-safe nav\", \"cross-feature navigation\", \"NavGraphBuilder\".",
+  "language": "en",
+  "response_language": "en",
+  "author": "Philipp Lackner",
+  "created": "2026-05-24",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}

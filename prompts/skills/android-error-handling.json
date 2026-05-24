@@ -1,0 +1,16 @@
+{
+  "title": "Android Error Handling",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": ["android", "kmp", "kotlin", "error-handling", "result-wrapper", "data-error", "sealed-interface", "clean-architecture"],
+  "description": "Defines a generic typed Result wrapper, DataError sealed hierarchy, EmptyResult alias, and extension helpers (map, onSuccess, onFailure, asEmptyResult) for Android and Kotlin Multiplatform. Provides consistent typed error handling across data, domain, presentation, validation, and auth layers.",
+  "trigger_description": "Use whenever defining error types, creating a Result wrapper, handling success/failure flows, mapping errors, or working with typed errors anywhere in the app — not just data layer, also validation, auth, and domain logic. Trigger phrases: \"Result wrapper\", \"error handling\", \"DataError\", \"onSuccess\", \"onFailure\", \"EmptyResult\", \"map result\", \"error type\", \"validation error\", \"typed errors\".",
+  "language": "en",
+  "response_language": "en",
+  "author": "Philipp Lackner",
+  "created": "2026-05-24",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}

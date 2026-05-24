@@ -1,0 +1,16 @@
+{
+  "title": "Android Data Layer",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": ["android", "kmp", "kotlin", "data-layer", "ktor", "room", "repository-pattern", "dto", "mapper", "offline-first", "token-storage"],
+  "description": "Data layer patterns for Android/KMP: data source vs repository distinction, DTOs and mappers, Room entities and DAOs, Ktor HttpClient setup, safe network call helpers, token storage and refresh, and offline-first strategies. Builds on the android-error-handling Result wrapper for typed errors.",
+  "trigger_description": "Use whenever writing or reviewing a data source or repository, creating DTOs or Room entities, writing mappers, setting up the Ktor HttpClient, handling network errors, or implementing token refresh. Trigger phrases: \"create a repository\", \"create a data source\", \"add a DAO\", \"Ktor client\", \"write a mapper\", \"DTO\", \"Room entity\", \"network call\", \"token storage\", \"offline-first\".",
+  "language": "en",
+  "response_language": "en",
+  "author": "Philipp Lackner",
+  "created": "2026-05-24",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}

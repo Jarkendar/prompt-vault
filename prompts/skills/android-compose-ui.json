@@ -1,0 +1,16 @@
+{
+  "title": "Android Compose UI",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": ["android", "kmp", "kotlin", "jetpack-compose", "recomposition", "stability", "side-effects", "lazy-list", "animation", "accessibility", "design-system", "modifier"],
+  "description": "Compose UI patterns for Android/KMP: stability and recomposition rules, side effects, lazy lists, animations, previews, accessibility, custom modifier extensions, and design system composables. Enforces dumb UI — composables render state and forward actions, with all logic kept in the ViewModel or below.",
+  "trigger_description": "Use whenever writing or reviewing composables, optimizing recomposition, adding animations, creating previews, writing custom modifiers, structuring a design system, or making any Compose UI decision beyond the MVI/ViewModel layer. Trigger phrases: \"composable\", \"recomposition\", \"LaunchedEffect\", \"Modifier\", \"LazyColumn\", \"preview\", \"animation\", \"design system\", \"stability\", \"contentDescription\", \"graphicsLayer\", \"slot API\", \"Compose performance\".",
+  "language": "en",
+  "response_language": "en",
+  "author": "Philipp Lackner",
+  "created": "2026-05-24",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}

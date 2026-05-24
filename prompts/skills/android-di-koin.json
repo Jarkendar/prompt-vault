@@ -1,0 +1,16 @@
+{
+  "title": "Android DI with Koin",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": ["android", "kmp", "kotlin", "koin", "dependency-injection", "viewmodel", "jetpack-compose", "modularization", "startkoin"],
+  "description": "Koin dependency injection setup for Android/KMP: one module per feature layer, constructor-reference overloads (singleOf, viewModelOf, factoryOf), assembly of all modules in :app, and koinViewModel() injection in Compose root composables. Includes patterns for binding interfaces and lambda-overload fallbacks.",
+  "trigger_description": "Use whenever setting up Koin, defining a DI module, providing a repository or ViewModel, injecting a dependency, or wiring modules in the Application class. Trigger phrases: \"set up Koin\", \"add a Koin module\", \"inject a dependency\", \"DI module\", \"koinViewModel\", \"provide a ViewModel\", \"startKoin\", \"single/viewModel/factory\".",
+  "language": "en",
+  "response_language": "en",
+  "author": "Philipp Lackner",
+  "created": "2026-05-24",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}
