@@ -1,0 +1,26 @@
+{
+  "title": "Android Compose Layout From Screenshot",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": [
+    "android",
+    "jetpack-compose",
+    "paparazzi",
+    "snapshot-testing",
+    "material3",
+    "ui-from-image",
+    "visual-regression",
+    "state-hoisting",
+    "preview"
+  ],
+  "description": "Converts a pasted reference screenshot into a production-grade Jetpack Compose component with stateless+stateful pair, multi-config Previews (light/dark × portrait/landscape), and a Paparazzi snapshot test. Runs an LLM-vision comparison loop between generated snapshots and the reference for up to 3 iterations, then either ships or produces a markdown report on remaining gaps in the conversation language.",
+  "trigger_description": "Trigger when an image of a UI is pasted/attached and the user wants Compose code that matches it — phrases like 'zrób layout z tego screena', 'odtwórz ten ekran w Compose', 'build this UI', 'match this mockup', 'recreate this design', 'implement this screenshot'. Also when Paparazzi snapshot testing is mentioned alongside building from a reference. Do NOT trigger for prose-only specs (use compose-component-creator), architecture work, or modifying existing Compose code.",
+  "language": "en",
+  "response_language": "en",
+  "author": "jarkendar",
+  "created": "2026-05-26",
+  "version": "1.0.0",
+  "tested_on": "claude-sonnet",
+  "compatible_with": ["claude", "aider"],
+  "additional_data": []
+}
