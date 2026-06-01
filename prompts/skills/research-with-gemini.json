@@ -1,0 +1,29 @@
+{
+  "title": "Research with Gemini",
+  "category": "skills",
+  "use_case": "skill",
+  "tags": [
+    "gemini",
+    "antigravity-cli",
+    "agy",
+    "research",
+    "context-optimization",
+    "web-search",
+    "repo-mapping",
+    "claude-code",
+    "markdown-output"
+  ],
+  "description": "Delegates wide or context-expensive research to Google Antigravity CLI (agy / Gemini) and reads back a structured Markdown digest, keeping Claude Code's own context free. Supports shallow and deep modes, parallel sub-query execution, web/repo/docs sources, and configurable output language.",
+  "trigger_description": "Use when answering would mean reading 5+ files, doing open-web research with citations, or condensing a large document — e.g. 'zmapuj ten moduł', 'rozeznaj jak się to teraz robi', 'przeszukaj repo pod kątem X', 'streść tę dokumentację', 'map this module', 'research the current approach for X'. Covers repo orientation, grounded web research, and digesting big docs. Do NOT use for a single known file or a one-line fact you can read directly. Linux/macOS only.",
+  "language": "en",
+  "response_language": "en",
+  "author": "jarkendar",
+  "created": "2026-06-01",
+  "version": "1.0.0",
+  "tested_on": "claude code",
+  "compatible_with": [
+    "claude",
+    "aider"
+  ],
+  "additional_data": []
+}
